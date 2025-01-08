@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Health & Wellness Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="dark-navbar navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-heart-pulse-fill me-2"></i>
+                Wellness Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#mainNav" aria-controls="mainNav" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="features.html">
+                            <i class="bi bi-grid-fill me-1"></i>Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="bi bi-info-circle-fill me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="bi bi-envelope-fill me-1"></i>Contact
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary" href="#signup">
+                            <i class="bi bi-person-plus-fill me-1"></i>Get Started
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="features-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Health & Wellness Features</h2>
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-moon-stars"></i> Sleep Tracker
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <form id="sleepTrackerForm">
+                            <div class="mb-4">
+                                <label for="sleepTime" class="form-label">
+                                    <i class="bi bi-moon-stars me-2"></i>
+                                    What time did you go to sleep?
+                                </label>
+                                <input type="time" class="form-control" id="sleepTime" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="wakeTime" class="form-label">
+                                    <i class="bi bi-sunrise me-2"></i>
+                                    What time did you wake up?
+                                </label>
+                                <input type="time" class="form-control" id="wakeTime" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-calculator me-2"></i>
+                                Calculate Sleep Duration
+                            </button>
+                        </form>
+                        <div id="sleepResults" class="mt-4 d-none">
+                            <h4><i class="bi bi-clipboard2-data me-2"></i>Your Sleep Analysis</h4>
+                            <p><i class="bi bi-clock me-2"></i>Total Sleep Duration: <span id="sleepDuration"></span></p>
+                            <p><i class="bi bi-star me-2"></i>Sleep Quality: <span id="sleepQuality"></span></p>
+                            <div id="sleepRecommendation" class="alert mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-droplet-fill"></i> Water Intake
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <div class="info-card mb-4">
+                            <div class="info-icon">
+                                <i class="bi bi-info-circle-fill"></i>
+                            </div>
+                            <div class="recommended-intake">
+                                <h5>Recommended Daily Intake</h5>
+                                <div class="intake-details">
+                                    <div class="intake-item">
+                                        <i class="bi bi-gender-male text-primary"></i>
+                                        <span>Men: 15.5 cups (3.7 liters)</span>
+                                    </div>
+                                    <div class="intake-item">
+                                        <i class="bi bi-gender-female text-danger"></i>
+                                        <span>Women: 11.5 cups (2.7 liters)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="waterGoal" class="form-label">Daily Goal (cups)</label>
+                            <input type="number" class="form-control text-center" id="waterGoal" 
+                                value="15" min="1" max="20">
+                        </div>
+
+                        <div class="progress-circle">
+                            <div class="progress-circle-inner">
+                                <div>
+                                    <div class="progress-text">0%</div>
+                                    <div class="progress-label">
+                                        <span id="currentCups">0</span>/<span id="goalCups">15</span> cups
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="water-controls">
+                            <button class="btn btn-outline-primary" data-cups="1">
+                                <i class="bi bi-cup"></i>
+                                1 Cup
+                            </button>
+                            <button class="btn btn-outline-primary" data-cups="2">
+                                <i class="bi bi-cup-straw"></i>
+                                2 Cups
+                            </button>
+                            <button class="btn btn-outline-primary" data-cups="3">
+                                <i class="bi bi-water"></i>
+                                3 Cups
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="btn btn-danger btn-sm" id="resetWater">
+                                <i class="bi bi-arrow-counterclockwise"></i> Reset Tracker
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-calculator-fill"></i> BMI Calculator
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="info-card mb-4">
+                            <div class="info-icon">
+                                <i class="bi bi-clipboard2-pulse-fill"></i>
+                            </div>
+                            <div class="bmi-info">
+                                <h5>BMI Categories</h5>
+                                <div class="bmi-ranges">
+                                    <div class="bmi-range underweight">
+                                        <span class="range-label">Underweight</span>
+                                        <span class="range-value">< 18.5</span>
+                                    </div>
+                                    <div class="bmi-range normal">
+                                        <span class="range-label">Normal</span>
+                                        <span class="range-value">18.5 - 24.9</span>
+                                    </div>
+                                    <div class="bmi-range overweight">
+                                        <span class="range-label">Overweight</span>
+                                        <span class="range-value">25 - 29.9</span>
+                                    </div>
+                                    <div class="bmi-range obese">
+                                        <span class="range-label">Obese</span>
+                                        <span class="range-value">≥ 30</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="bmiForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="bi bi-gender-ambiguous"></i> Gender
+                                    </label>
+                                    <select class="form-control" id="gender" required>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="bi bi-calendar"></i> Age
+                                    </label>
+                                    <input type="number" class="form-control" id="age" 
+                                        min="18" max="120" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">
+                                    <i class="bi bi-speedometer2"></i> Weight (kg)
+                                </label>
+                                <input type="number" class="form-control" id="weight" 
+                                    min="30" max="300" step="0.1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="height" class="form-label">
+                                    <i class="bi bi-rulers"></i> Height (cm)
+                                </label>
+                                <input type="number" class="form-control" id="height" 
+                                    min="100" max="250" step="0.1" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-calculator"></i> Calculate BMI
+                            </button>
+                        </form>
+                        
+                        <div id="bmiResults" class="mt-4 d-none">
+                            <div class="text-center mb-4">
+                                <h4>Your BMI</h4>
+                                <div class="display-4 fw-bold text-primary" id="bmiValue">0</div>
+                                <div class="bmi-marker" id="bmiMarker"></div>
+                            </div>
+                            <div class="bmi-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Category:</span>
+                                    <span class="detail-value" id="bmiCategory"></span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Healthy Weight Range:</span>
+                                    <span class="detail-value" id="healthyRange"></span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Weight Status:</span>
+                                    <span class="detail-value" id="weightStatus"></span>
+                                </div>
+                            </div>
+                            <div class="alert mt-4" id="bmiRecommendation"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-activity"></i> Activity Tracker
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <form id="activityForm">
+                            <div class="mb-3">
+                                <label for="activityType" class="form-label">
+                                    <i class="bi bi-activity"></i> Activity Type
+                                </label>
+                                <select class="form-control" id="activityType" required>
+                                    <option value="">Select an activity</option>
+                                    <option value="running">Running</option>
+                                    <option value="cycling">Cycling</option>
+                                    <option value="swimming">Swimming</option>
+                                    <option value="walking">Walking</option>
+                                    <option value="yoga">Yoga</option>
+                                    <option value="gym">Gym Workout</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">
+                                    <i class="bi bi-clock"></i> Duration (minutes)
+                                </label>
+                                <input type="number" class="form-control" id="duration" 
+                                    min="1" max="300" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="intensity" class="form-label">
+                                    <i class="bi bi-lightning"></i> Intensity
+                                </label>
+                                <select class="form-control" id="intensity" required>
+                                    <option value="low">Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-plus-circle"></i> Log Activity
+                            </button>
+                        </form>
+                        
+                        <div class="activity-list mt-4">
+                            <h5 class="mb-3">Recent Activities</h5>
+                            <div id="activityHistory"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-trophy"></i> Goals Tracker
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="goal-item">
+                            <label class="form-label">Weight Goal (kg)</label>
+                            <input type="range" class="form-range" id="weightGoal" min="0" max="100" value="70">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Current: <span class="weight-value">70</span> kg</span>
+                                <span>Target: 70 kg</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"></div>
+                            </div>
+                        </div>
+
+                        <div class="goal-item">
+                            <label class="form-label">Daily Steps</label>
+                            <input type="range" class="form-range" id="stepsGoal" min="0" max="20000" value="10000">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Current: <span class="steps-value">10000</span></span>
+                                <span>Target: 10,000</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"></div>
+                            </div>
+                        </div>
+
+                        <div class="goal-item">
+                            <label class="form-label">Exercise Minutes</label>
+                            <input type="range" class="form-range" id="exerciseGoal" min="0" max="60" value="30">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Current: <span class="exercise-value">30</span> min</span>
+                                <span>Target: 30 min</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block mb-5">
+                <h3 class="feature-title">
+                    <i class="bi bi-check2-square"></i> Daily Habits
+                </h3>
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="habits-container">
+                            <div class="daily-progress mb-4">
+                                <h5 class="text-center mb-3">Today's Progress</h5>
+                                <div class="progress" style="height: 25px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%">
+                                        0% Complete
+                                    </div>
+                                </div>
+                                <p class="text-center mt-2 text-muted">
+                                    <small>Complete your daily habits to increase progress</small>
+                                </p>
+                            </div>
+
+                            <div class="habit-item d-flex align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="habit1">
+                                    <label class="form-check-label" for="habit1">Morning Exercise</label>
+                                </div>
+                                <i class="bi bi-trash habit-delete ms-auto"></i>
+                            </div>
+
+                            <div class="habit-item d-flex align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="habit2">
+                                    <label class="form-check-label" for="habit2">Healthy Breakfast</label>
+                                </div>
+                                <i class="bi bi-trash habit-delete ms-auto"></i>
+                            </div>
+
+                            <div class="habit-item d-flex align-items-center mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="habit3">
+                                    <label class="form-check-label" for="habit3">8 Hours Sleep</label>
+                                </div>
+                                <i class="bi bi-trash habit-delete ms-auto"></i>
+                            </div>
+
+                            <!-- Add New Habit Button -->
+                            <button class="btn btn-outline-primary w-100 mt-3" id="addHabitBtn">
+                                <i class="bi bi-plus-lg"></i> Add New Habit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2024 Health & Wellness Tracker. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    $(document).ready(function() {
+        $('#sleepTrackerForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            const sleepTime = $('#sleepTime').val();
+            const wakeTime = $('#wakeTime').val();
+            
+            const sleep = new Date(`2024-01-01 ${sleepTime}`);
+            let wake = new Date(`2024-01-01 ${wakeTime}`);
+            
+            if (wake < sleep) {
+                wake = new Date(`2024-01-02 ${wakeTime}`);
+            }
+            
+            const durationMs = wake - sleep;
+            const durationHours = durationMs / (1000 * 60 * 60);
+            
+            const $resultsDiv = $('#sleepResults');
+            const $durationSpan = $('#sleepDuration');
+            const $qualitySpan = $('#sleepQuality');
+            const $recommendationDiv = $('#sleepRecommendation');
+            
+            $durationSpan.text(`${durationHours.toFixed(1)} hours`);
+            
+            let quality, recommendation, alertClass;
+            if (durationHours < 6) {
+                quality = "Poor";
+                recommendation = "You're not getting enough sleep. Adults need 7-9 hours of sleep per night.";
+                alertClass = "alert-danger";
+            } else if (durationHours >= 6 && durationHours < 7) {
+                quality = "Fair";
+                recommendation = "You're getting close to the recommended amount, but try to get a bit more sleep.";
+                alertClass = "alert-warning";
+            } else if (durationHours >= 7 && durationHours <= 9) {
+                quality = "Excellent";
+                recommendation = "Great job! You're getting the recommended amount of sleep.";
+                alertClass = "alert-success";
+            } else {
+                quality = "Too Much";
+                recommendation = "You might be oversleeping. Try to aim for 7-9 hours of sleep.";
+                alertClass = "alert-warning";
+            }
+            
+            $qualitySpan.text(quality);
+            $recommendationDiv
+                .text(recommendation)
+                .removeClass('alert-danger alert-warning alert-success')
+                .addClass(alertClass);
+            
+            $resultsDiv.removeClass('d-none');
+        });
+    });
+
+    $(document).ready(function() {
+        let cupsConsumed = 0;
+        let dailyGoal = 15; 
+
+        $('#waterGoal').on('change', function() {
+            dailyGoal = parseInt($(this).val()) || 15;
+            $('#goalCups').text(dailyGoal);
+            updateWaterProgress();
+        });
+
+        $('.water-controls button').on('click', function() {
+            const cups = parseInt($(this).data('cups'));
+            cupsConsumed += cups;
+            updateWaterProgress();
+        });
+
+        $('#resetWater').on('click', function() {
+            cupsConsumed = 0;
+            updateWaterProgress();
+        });
+
+        function updateWaterProgress() {
+            const progress = Math.min((cupsConsumed / dailyGoal) * 100, 100);
+            
+            $('.progress-circle').css('--progress', `${progress}%`);
+            
+            $('.progress-text').text(`${Math.round(progress)}%`);
+            $('#currentCups').text(cupsConsumed);
+            
+            $('.progress-circle').addClass('progress-animation');
+            setTimeout(() => {
+                $('.progress-circle').removeClass('progress-animation');
+            }, 300);
+            
+            if (cupsConsumed >= dailyGoal) {
+                $('.water-controls button').prop('disabled', true);
+                $('.progress-circle').addClass('goal-reached');
+            } else {
+                $('.water-controls button').prop('disabled', false);
+                $('.progress-circle').removeClass('goal-reached');
+            }
+        }
+    });
+
+    $(document).ready(function() {
+        $('#bmiForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            const gender = $('#gender').val();
+            const age = parseInt($('#age').val());
+            const weight = parseFloat($('#weight').val());
+            const height = parseFloat($('#height').val()) / 100;
+            
+            const bmi = weight / (height * height);
+            
+            const minHealthyWeight = 18.5 * (height * height);
+            const maxHealthyWeight = 24.9 * (height * height);
+            
+            const $results = $('#bmiResults');
+            const $bmiValue = $('#bmiValue');
+            const $bmiCategory = $('#bmiCategory');
+            const $healthyRange = $('#healthyRange');
+            const $weightStatus = $('#weightStatus');
+            const $recommendation = $('#bmiRecommendation');
+            
+            $bmiValue.text(bmi.toFixed(1));
+            
+            const markerPosition = Math.min(Math.max((bmi - 15) * 5, 0), 100);
+            $('.bmi-marker::before').css('left', `${markerPosition}%`);
+            
+            let category, status, recommendation, alertClass;
+            if (bmi < 18.5) {
+                category = "Underweight";
+                status = "Below healthy range";
+                recommendation = "Consider consulting a healthcare provider about healthy weight gain strategies.";
+                alertClass = "alert-warning";
+            } else if (bmi < 25) {
+                category = "Normal weight";
+                status = "Within healthy range";
+                recommendation = "Great job! Maintain your healthy lifestyle with balanced diet and regular exercise.";
+                alertClass = "alert-success";
+            } else if (bmi < 30) {
+                category = "Overweight";
+                status = "Above healthy range";
+                recommendation = "Focus on balanced nutrition and regular physical activity to reach a healthier weight.";
+                alertClass = "alert-warning";
+            } else {
+                category = "Obese";
+                status = "Significantly above healthy range";
+                recommendation = "Please consult a healthcare provider for personalized weight management advice.";
+                alertClass = "alert-danger";
+            }
+            
+            $bmiCategory.text(category);
+            $healthyRange.text(`${minHealthyWeight.toFixed(1)} - ${maxHealthyWeight.toFixed(1)} kg`);
+            $weightStatus.text(status);
+            $recommendation
+                .text(recommendation)
+                .removeClass('alert-warning alert-success alert-danger')
+                .addClass(alertClass);
+            $results.removeClass('d-none').addClass('animate-fade-in');
+        });
+    });
+
+    $(document).ready(function() {
+        $('#activityForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            const activityType = $('#activityType').val();
+            const duration = $('#duration').val();
+            const intensity = $('#intensity').val();
+            const timestamp = new Date().toLocaleString();
+            
+            const activityHTML = `
+                <div class="activity-item">
+                    <h5>
+                        <i class="bi bi-${getActivityIcon(activityType)}"></i>
+                        ${capitalizeFirst(activityType)}
+                    </h5>
+                    <p>
+                        <i class="bi bi-clock"></i> ${duration} minutes
+                        <span class="badge ${getIntensityClass(intensity)} ms-2">${intensity}</span>
+                    </p>
+                    <small class="text-muted">
+                        <i class="bi bi-calendar"></i> ${timestamp}
+                    </small>
+                </div>
+            `;
+            
+            
+            $('#activityHistory').prepend(activityHTML);
+            
+            this.reset();
+        });
+        
+        function getActivityIcon(activity) {
+            const icons = {
+                running: 'person-running',
+                cycling: 'bicycle',
+                swimming: 'water',
+                walking: 'person-walking',
+                yoga: 'peace',
+                gym: 'gear'
+            };
+            return icons[activity] || 'activity';
+        }
+        
+        function getIntensityClass(intensity) {
+            const classes = {
+                low: 'bg-success',
+                medium: 'bg-warning',
+                high: 'bg-danger'
+            };
+            return classes[intensity];
+        }
+        
+        function capitalizeFirst(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    });
+
+    $(document).ready(function() {
+        $('#weightGoal').on('input', function() {
+            $('.weight-value').text($(this).val());
+            updateProgress($(this), 70, 'bg-success');
+        });
+
+        $('#stepsGoal').on('input', function() {
+            $('.steps-value').text($(this).val());
+            updateProgress($(this), 10000, 'bg-info');
+        });
+
+        $('#exerciseGoal').on('input', function() {
+            $('.exercise-value').text($(this).val());
+            updateProgress($(this), 30, 'bg-primary');
+        });
+
+        function updateProgress(slider, target, className) {
+            const value = slider.val();
+            const progress = (value / target) * 100;
+            slider.next('.progress').find('.progress-bar')
+                .css('width', `${progress}%`)
+                .addClass(className);
+        }
+    });
+
+    $(document).ready(function() {
+        $('.form-check-input').prop('checked', false);
+        
+        const $progressBar = $('.daily-progress .progress-bar');
+        $progressBar
+            .css('width', '0%')
+            .text('0% Complete')
+            .removeClass('bg-success bg-warning bg-danger')
+            .addClass('bg-danger');
+
+        $('.habits-container').on('change', '.form-check-input', function() {
+            const $habitItem = $(this).closest('.habit-item');
+            if (this.checked) {
+                $habitItem.addClass('bg-light');
+            } else {
+                $habitItem.removeClass('bg-light');
+            }
+            updateDailyProgress();
+        });
+
+        $('.habits-container').on('dblclick', '.form-check-label', function() {
+            const currentText = $(this).text();
+            const $input = $('<input type="text" class="form-control form-control-sm habit-edit" />');
+            $input.val(currentText);
+            $(this).hide().after($input);
+            $input.focus();
+        });
+
+        $('.habits-container').on('blur keyup', '.habit-edit', function(e) {
+            if (e.type === 'keyup' && e.key !== 'Enter') return;
+            
+            const newText = $(this).val().trim();
+            const $label = $(this).prev('.form-check-label');
+            
+            if (newText) {
+                $label.text(newText);
+            }
+            
+            $label.show();
+            $(this).remove();
+        });
+
+        $('#addHabitBtn').click(function() {
+            const habitCount = $('.habit-item').length + 1;
+            const newHabit = `
+                <div class="habit-item d-flex align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="habit${habitCount}">
+                        <label class="form-check-label" for="habit${habitCount}">New Habit</label>
+                    </div>
+                    <i class="bi bi-trash habit-delete ms-auto"></i>
+                </div>
+            `;
+            $(newHabit).insertBefore(this);
+            updateDailyProgress();
+            
+            $('.habit-item').last().find('.form-check-label').trigger('dblclick');
+        });
+
+        $('.habits-container').on('click', '.habit-delete', function() {
+            $(this).closest('.habit-item').fadeOut(300, function() {
+                $(this).remove();
+                updateDailyProgress();
+            });
+        });
+
+        function updateDailyProgress() {
+            const total = $('.form-check-input').length;
+            const checked = $('.form-check-input:checked').length;
+            const progress = total > 0 ? Math.round((checked / total) * 100) : 0;
+            
+            const $progressBar = $('.daily-progress .progress-bar');
+            
+            $progressBar
+                .css('width', `${progress}%`)
+                .text(`${progress}% Complete`);
+
+            $progressBar.removeClass('bg-success bg-warning bg-danger');
+            if (progress >= 75) {
+                $progressBar.addClass('bg-success');
+            } else if (progress >= 50) {
+                $progressBar.addClass('bg-warning');
+            } else {
+                $progressBar.addClass('bg-danger');
+            }
+        }
+    });
+    </script>
+</body>
+</html> 
